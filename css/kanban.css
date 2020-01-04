@@ -1,0 +1,411 @@
+/*
+    CSS for kanban
+    
+    Name:           kanban.css
+    Author:         Jack Ramsey
+    Date:           12/30/2019
+    Purpose:        Provides styling for the kanban, including
+                    - cards
+                    - modal
+                    - input form
+                    - close, add, and submit buttons
+                    - table for the kanban
+*/  
+
+body {
+    margin: 0;
+    clear: both;
+    content: "";
+    font-family: "Raleway", sans-serif;
+    font-size: 1em;
+    background: #f7f7f7;
+    font-weight: 100;
+}
+
+header, footer {
+    background: #041E42;    /* ETSU Navy */
+    color: #FFC72C;         /* ETSU Gold */
+    padding: 20px 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 50px;
+    font-size: 1.2rem;
+    z-index: 505;
+}
+
+.row {
+    background: transparent;
+}
+
+/* cards */
+.card-outer {
+    display: block;
+    max-width: 400px;
+    min-width: 300px;
+    height: 202px;
+    margin: auto;
+    background: rgb(216, 226, 242);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card-outer.ui-draggable-dragging { 
+    background: rgba(225, 100, 100, .5); 
+}
+
+.card-inner {
+    position: inherit;
+    top: 0;
+    left: 0;
+    max-width: 400px;
+    min-width: 300px;
+    height: 202px;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 1;
+    background: rgba(202,202,255,.1);    
+}
+
+.card-inner .close {
+    display: inline-block;
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    color: #fff;
+    z-index: 2;
+    opacity: .9;
+}
+
+.card-inner .close:hover {
+    transition: .3s;
+    opacity: .6;
+}
+
+.card-inner header {
+    position: inherit;
+    width: 100%;
+    min-width: 150px;
+    height: 30px;
+    background: rgba(100,100,230,.9);
+    color: #fff;
+    text-align: center;
+    border-radius: 10px 10px 0 0; 
+    font-size: 1.3rem;
+    padding-top: 0px;
+}
+
+.card-inner > .dates {
+    position: absolute;
+    top: 160px;
+    width: 100%;
+    height: 20px;
+    background: rgba(100,100,230,.9);
+    padding-left: 25px;
+    text-align: center;
+    z-index: 5;
+}
+
+.card-inner > .dates > span {
+    display: inline-block;
+    width: 75px;
+    color: #fff;
+    font-size: .8rem;
+}
+
+.card-inner > .dates > label {
+    display: inline-block;
+    width: 50px;
+    margin-right: 5px;
+    font-size: .8rem;
+    color: #fff;
+}
+
+.card-inner > .footer > span {
+    color: gold;
+}
+
+.card-inner > .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: rgba(100,100,230,.9);
+    color: #fff;
+    border-radius: 0 0 10px 10px; 
+    font-size: .9rem;
+    padding: 0px 0px 8px 15px;
+    z-index: 1;
+    text-align: center;
+}
+
+.card-content {
+    top: 60px;
+    padding: 4px;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    font-size: 1rem;
+}
+
+/* modal */
+#modalAdd, #modalEdit {
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(50,50,50,.8);
+    width: 100%;
+    height: 100%;
+}
+
+.close-modal {
+    position: absolute;
+    top:100px;
+    right:100px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding-bottom: 0px;
+    margin: 0;
+    color: #ddd;
+    font-size: 2.3em;
+    line-height: 1.1em;
+    border-radius: 50px;
+}
+
+.modal .fa {
+    margin-top: 6px;
+}
+
+.modal .close-modal:hover {
+    transition: .2s;
+    color: #777;
+    background: #ddd;
+}
+
+.modal-outer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: 600px;
+    background: #eee;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+.modal-inner {
+    position: relative;
+    top: 40%;
+    left: 48%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: 450px;
+}
+
+.modal-outer heading {
+    display: block;
+    height: 80px;
+    position: relative;
+    top: 0;
+    background: #041E42;
+    text-align: center;
+    padding-top: 8px;
+    color: white;
+    font-weight: 500;
+    font-size: 2.5rem;
+    border-bottom: 2px solid #00a;
+}
+
+/* table */
+.tab {
+    width: auto;
+    margin: auto;
+    margin-top: 75px;
+    border-collapse: collapse;
+    border-bottom: 1px solid #aaa;
+    box-shadow: 4px 4px 4px #777;
+}
+
+.tab  tr > th {
+    max-width: 400px;
+    min-width: 300px;
+    height: auto;
+    background: #041E42;
+    padding-bottom: 5px;
+    color: #fff;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.tab td {
+    width: 400px;
+    height: 200px;
+    padding: 0;
+    border-right: 1px dotted #041E42;
+    border-left: 1px dotted #041E42;
+}
+
+.tab td:first-child {
+    background: rgb(245, 166, 166,.2);
+}
+
+.tab td:nth-child(even) {
+    background: rgba(240, 250, 102,.4);
+}
+
+.tab td:last-child {
+    background: rgba(47, 181, 40, .2);
+}
+
+
+/* input controls */
+label {
+    font-size: 1.4rem;
+    margin-right: 25px;
+    width: 150px;
+    text-align: right;
+}
+
+input[type=text], input[type=password] {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 15px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+input[type=date] {
+    width: 150px;
+}
+
+input[type=radio] {
+    display: inline;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+fieldset {
+    width: 400px;    
+    margin-left: 100px;
+    margin-top: 10px;
+    border: 1px solid #007;
+    padding: 0 20px 0 20px;
+
+}
+
+fieldset > label {
+    display: inline;
+    margin-left: 5px;
+}
+
+fieldset > legend {
+    width: 100px;
+    padding: 0 5px;
+}
+
+textarea {
+    display: block;
+    margin: 10px auto;
+}
+
+label.dates {
+    font-size: 1.2rem;
+    width: 125px;
+    margin-right: 10px;
+}
+
+.submit {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    top: 125%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-size: 1.8rem;
+    background: #041E42;
+    border-radius: 20px;
+    border-width: 0;
+    color: #fff;
+    border: 1px solid #aaa;
+}
+
+.submit:hover {
+    transition: .3s;
+    opacity: .7;
+    background: rgba(66, 135, 245, .5);
+    cursor: pointer;
+}
+
+.addJob {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.add {
+    width: 150px;
+    height: 50px;
+    background: #041E42;
+    border-width: 0;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 100;
+}
+
+.add:hover {
+    transition: .3s;
+    opacity: .7;
+}
+
+#saveMsg {
+    display: none;
+    
+    padding-top: 12px;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+
+    background: rgba(22,52,68,0.7);
+    height: 120px;
+    text-align: center;
+    font-size: 2em;
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    line-height: 50px;
+    z-index: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
