@@ -3,7 +3,8 @@
     
     Name:           kanban.css
     Author:         Jack Ramsey
-    Date:           12/30/2019
+    Created:        12/26/2019
+    Last Upate:     01/05/2020 
     Purpose:        Provides styling for the kanban, including
                     - cards
                     - modal
@@ -45,8 +46,8 @@ footer {
 /* cards */
 .card-outer {
     display: block;
-    max-width: 400px;
-    min-width: 300px;
+    max-width: 300px;
+    min-width: 250px;
     height: 202px;
     margin: auto;
     background: rgb(216, 226, 242);
@@ -55,15 +56,18 @@ footer {
 }
 
 .card-outer.ui-draggable-dragging { 
-    background: rgba(225, 100, 100, .5); 
+/*    background: rgba(225, 100, 100, .5); */
+    cursor: move;
+/*    border: 1px solid #900;*/
+    box-shadow: 0px 0px 5px rgba(225,0,0,.8);
 }
 
 .card-inner {
     position: inherit;
     top: 0;
     left: 0;
-    max-width: 400px;
-    min-width: 300px;
+    max-width: 300px;
+    min-width: 250px;
     height: 202px;
     border: 1px solid black;
     border-radius: 10px;
@@ -230,14 +234,15 @@ footer {
 .tab {
     width: auto;
     margin: auto;
-    margin-top: 75px;
+    margin-top: 10px;
     border-collapse: collapse;
     border-bottom: 1px solid #aaa;
     box-shadow: 4px 4px 4px #777;
+    background: rgba(150,150,150,.1);
 }
 
 .tab  tr > th {
-    max-width: 400px;
+    max-width: 300px;
     min-width: 300px;
     height: auto;
     background: #041E42;
@@ -249,7 +254,7 @@ footer {
 }
 
 .tab td {
-    width: 400px;
+    width: 300px;
     height: 200px;
     padding: 0;
     border-right: 1px dotted #041E42;
@@ -257,17 +262,21 @@ footer {
 }
 
 .tab td:first-child {
-    background: rgb(245, 166, 166,.2);
+    background: rgb(255, 235, 235,.9);
 }
 
 .tab td:nth-child(even) {
-    background: rgba(240, 250, 102,.4);
+    background: rgba(235, 255, 235,.9);
 }
 
 .tab td:last-child {
-    background: rgba(47, 181, 40, .2);
+    background: rgba(235, 235, 255,.9);
 }
 
+tr.ui-sortable-helper {
+    cursor: all-scroll;
+    box-shadow: 0px 0px 5px rgba(225,0,0,1);
+}
 
 /* input controls */
 label {
@@ -353,7 +362,7 @@ label.dates {
 
 .addJob {
     position: absolute;
-    top: 100px;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -371,9 +380,11 @@ label.dates {
 
 .add:hover {
     transition: .3s;
-    opacity: .7;
+/*    opacity: .7;*/
+    background: rgba(255, 199, 44, .8); 
 }
 
+/* displays when 'Save' is clicked */
 #saveMsg {
     display: none;
     

@@ -3,7 +3,8 @@
     
     Name:           kanban.js
     Author:         Jack Ramsey
-    Date:           12/30/2019
+    Created:        12/26/2019
+    Last Upate:     01/05/2020 
     Purpose:        Functionality for kanban board, including
                     - drag and drop functionality
                     - open/close modal
@@ -15,14 +16,14 @@
 $(document).ready(function() {
     $.ajaxSetup({
         cache: false
-//    }
     });
-    
+//window.scrollTo(0,0);    
 // get current table data   
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'data/data.dat', false);
     xhr.send(null);
     $('#tab').html(xhr.responseText);
+    saveTable();
 ///////////////////    
     
 // variables 
@@ -40,27 +41,41 @@ $(document).ready(function() {
 // global variables for card creation and modification
     var job,desc,owner,assign,due,priority;
     var newJob,newDesc,newOwner,newAssign,newDue,newPriority;
+    var tableData;
 ////////////////////////////////////////////////////////////////
+    
+    $('#tab tbody').sortable( {
+        axis: 'y',
+        snap: 'tr', 
+        opacity: .7,
+        cursor: 'ns-resize',
+        stop: function( event, ui ) {
+            $('tr').removeClass();
+            $('tr').removeAttr('style');            
+            tableData = $('#tab').html();
+            saveTable();
+        }
+    });
     
     // initialize drag, drop, and close events
     // make table cells droppable
     cells.droppable( {
-        drop: handleDropEvent
+        drop: function ( event, ui ) {
+            $('.card-outer').css('background', 'rgb(216, 226, 242)');
+            $('.card-outer').removeClass('ui-draggable-dragging');
+            tableData = $('#tab').html();
+            saveTable();
+//        location.reload();
+        }
     });
     
     // make cards draggable
     cards.draggable( {
-        axis: 'x',
-        snap: 'td',
-        cursor: 'move'
+       cursor: 'move',
+       axis: 'x',
+       snap: 'td'        
     });
-    
-    // drop event -- save table
-    function handleDropEvent( event, ui ) {
-        $('.card-outer').css('background', 'rgb(216, 226, 242)');
-        saveTable();
-    }
-    
+
     // remove a row when closer clicked
     closers.click( function(){
         $(this).parents("tr").remove();
@@ -92,7 +107,7 @@ $(document).ready(function() {
     
     // save the table
     function saveTable() {
-        var tableData = $('#tab').html();
+        tableData = $('#tab').html();
         
         var url ="php/save.php";
         $.post(url, { tableData:tableData }, function(data){
@@ -296,25 +311,27 @@ $(document).ready(function() {
                 newPriority = 'style="background:#ff0000"';
                 break;
         }
+/*        
+  There's a problem that occurs when the job and description text are equal
+  Updating the desc gets placed in job title
+  Can't quite figure it out, yet
+        console.log(newJob == newDesc);
         
-//  There's a problem that occurs when the job and description text are equal
-//  Updating the desc gets placed in job title
-//  Can't quite figure it out, yet
-//        console.log(newJob == newDesc);
-//        
-//        if (newJob == newDesc) {
-//            var jobMatch = newJob;
-//            newJob = ' ';
-//            newHtml = newHtml.replace(job, newJob);
-//            newHtml = newHtml.replace(desc, newDesc);
-//            newHtml = newHtml.replace(newJob, jobMatch);
-//        } else {
-//            newHtml = newHtml.replace(job, newJob);
-//            newHtml = newHtml.replace(";"+job, ";"+newJob);
-//            newHtml = newHtml.replace(desc, newDesc);
-//            newHtml = newHtml.replace(";"+desc, ";"+newDesc);
-//        }
+        if (newJob == newDesc) {
+            var jobMatch = newJob;
+            newJob = ' ';
+            newHtml = newHtml.replace(job, newJob);
+            newHtml = newHtml.replace(desc, newDesc);
+            newHtml = newHtml.replace(newJob, jobMatch);
+        } else {
+            newHtml = newHtml.replace(job, newJob);
+            newHtml = newHtml.replace(";"+job, ";"+newJob);
+            newHtml = newHtml.replace(desc, newDesc);
+            newHtml = newHtml.replace(";"+desc, ";"+newDesc);
+        }
+*/        
         
+        // update the card's data fields
         newHtml = newHtml.replace(job, newJob);
         newHtml = newHtml.replace(";"+job, ";"+newJob);
         newHtml = newHtml.replace(desc, newDesc);
@@ -348,11 +365,11 @@ $(document).ready(function() {
         }
         
         modalEdit.fadeOut(500);   
-});
-     
-    $(window).unload(function() {
-        saveTable();
-        location.reload();
     });
+     
+//    $(document).unload(function() {
+//        saveTable();
+//        location.reload();
+//    });
     
 });

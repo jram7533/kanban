@@ -10,5 +10,5 @@
     if (!empty($post_data)) {
         fwrite($handle, $post_data);
     }
-         fclose($handle);
+    fclose($handle);
 ?>
