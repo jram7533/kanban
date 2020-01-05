@@ -20,3 +20,6 @@ In light of the 'glitch' I mentioned above, for which I have no explanation, if 
 In the event you do find bugs (I don't claim that this solution is especially elegant -- still learning), I'd love to hear about them. 
 
 I have some future plans for the app, but really have to start getting things ready for my students. It's working now, even if it doesn't do everything I'd like :) 
+
+Update 2020-01-15
+Feature addition: rows are now sortable. One problem I haven't fixed yet: users can drop a row over the column header row. Caveat emptor
