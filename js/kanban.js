@@ -107,11 +107,11 @@ $(document).ready(function() {
     
     // save the table
     function saveTable() {
-        tableData = $('#tab').html();
+        var tableData = $('#tab').html();  // 2020-01-08: adding 'var' keyword might solve the problem
         
         var url ="php/save.php";
         $.post(url, { tableData:tableData }, function(data){
-//        console.log('response from the callback function: '+ data); 
+        console.log('response from the callback function: '+ data); 
         }).fail(function(jqXHR){
              alert(jqXHR.status +' '+jqXHR.statusText+ ' $.post failed!');
         });       
@@ -150,6 +150,7 @@ $(document).ready(function() {
             addNewRow(buildNewCard(job, owner, desc, assign, due, priority));
             
             saveTable();
+		   
             // reset form fields for next add
             $('#job').val('')
             $('#owner').val('');
@@ -158,6 +159,7 @@ $(document).ready(function() {
             $('#due').val('');
             $('#radio1').attr('checked', true);
         }
+	    
     });
     
     // get today's date, if no assign date provided
@@ -191,8 +193,11 @@ $(document).ready(function() {
         });
         
         saveTable();
-        
-        location.reload();
+  
+	   // 2020-1-8 disabled this to see if it resolves the 'add row' problem
+	   // 2020-1-8 update: this didn't seem to work (see line 110), but
+	   // I'm going to leave it commented out for now
+        //location.reload();
 
         ///////////////////////////////////////////
     }
