@@ -4,7 +4,7 @@
     Name:           kanban.js
     Author:         Jack Ramsey
     Created:        12/26/2019
-    Last Upate:     01/05/2020 
+    Last Upate:     01/11/2020 
     Purpose:        Functionality for kanban board, including
                     - drag and drop functionality
                     - open/close modal
