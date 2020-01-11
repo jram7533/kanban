@@ -111,7 +111,6 @@ $(document).ready(function() {
         
         var url ="php/save.php";
         $.post(url, { tableData:tableData }, function(data){
-        console.log('response from the callback function: '+ data); 
         }).fail(function(jqXHR){
              alert(jqXHR.status +' '+jqXHR.statusText+ ' $.post failed!');
         });       
@@ -372,9 +371,49 @@ $(document).ready(function() {
         modalEdit.fadeOut(500);   
     });
      
-//    $(document).unload(function() {
-//        saveTable();
-//        location.reload();
-//    });
+// collapse card    
+    document.getElementById('tab').addEventListener( "contextmenu", function(e) {
+        e.preventDefault();
+        
+        // when the event fires, it returns an object named 'e'
+        var path = e.path;      // get the path array from the event object
+        
+        // find the index of the 'card-outer' object in the array. this is necessary
+        // because it will vary depending on where on the card the user clicks
+        var index = path.findIndex(x => x.className === "card-outer ui-draggable");
+        
+        // put the 'card-outer' element into a variable
+        var outer = path[index];
+        
+        // get the element's height. it'll either be 202 (I don't know where the extra
+        // two pixels came from, but I'm running with it) or 30
+        var height = outer.offsetHeight;
+        
+        // toggle card-outer's height
+        if (height == 202) {
+           outer.style.height = '30px'; 
+        } else {
+            outer.style.height = '202px';
+        }
+        
+        saveTable();
+        
+    });
+    
     
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
