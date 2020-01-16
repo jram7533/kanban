@@ -450,6 +450,8 @@ $(document).ready(function () {
         if (ready) f.call(document); // If already ready, just run it
         else funcs.push(f);          // Otherwise, queue it for later.
     }
+    
+    location.reload();
 }());
 
 });
