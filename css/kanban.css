@@ -88,7 +88,7 @@ footer {
     top: 4px;
     right: 6px;
     color: #fff;
-    z-index: 2;
+    z-index: 20; 
     opacity: .9;
 }
 
