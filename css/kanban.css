@@ -3,8 +3,8 @@
     
     Name:           kanban.css
     Author:         Jack Ramsey
-    Created:        12/26/2019
-    Last Upate:     01/11/2020 
+    Created:        2020-01-16
+    Last Upate:     01/05/2020 
     Purpose:        Provides styling for the kanban, including
                     - cards
                     - modal
@@ -27,6 +27,12 @@ header, footer {
     background: #041E42;    /* ETSU Navy */
     color: #FFC72C;         /* ETSU Gold */
     padding: 20px 20px;
+}
+
+header {
+    position: sticky;
+    top: 0px;
+    z-index: 10;
 }
 
 footer {
@@ -279,6 +285,10 @@ tr.ui-sortable-helper {
     box-shadow: 0px 0px 5px rgba(225,0,0,1);
 }
 
+tr {
+    cursor: n-resize;
+}
+
 /* input controls */
 label {
     font-size: 1.4rem;
@@ -362,10 +372,11 @@ label.dates {
 }
 
 .addJob {
-    position: absolute;
+    position: fixed;
     top: 25px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 11;
 }
 
 .add {
