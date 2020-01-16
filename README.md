@@ -21,5 +21,9 @@ In the event you do find bugs (I don't claim that this solution is especially el
 
 I have some future plans for the app, but really have to start getting things ready for my students. It's working now, even if it doesn't do everything I'd like :) 
 
-Update 2020-01-15
+Update 2020-01-05
 Feature addition: rows are now sortable. One problem I haven't fixed yet: users can drop a row over the column header row. Caveat emptor
+
+Update 2020-01-16
+ - cells are collapsable (right-click)
+ - the 'failure to save the first time' problem seems to have been fixed. I added an init function, to the script now seems to be able to keep up with the user
