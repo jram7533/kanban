@@ -117,6 +117,8 @@ $(document).ready(function () {
         var tableData = $('#tab').html(); // 2020-01-08: adding 'var' keyword might solve the problem
 
         var url = "php/save.php";
+        console.log(url);
+        //var url = "../php/save.php";
         $.post(url, {
             tableData: tableData
         }, function (data) {}).fail(function (jqXHR) {
