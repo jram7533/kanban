@@ -1,0 +1,5 @@
+INSERT INTO `kanban` (`ID`, `title`, `owner`, `description`, `assigned`, `due`, `priority`, `status`) VALUES (NULL, '1210 Labs', 'Jack', 'Update labs', '2020-01-19', '2010-0420', 'LOW', '0')
+INSERT INTO `kanban` (`ID`, `title`, `owner`, `description`, `assigned`, `due`, `priority`, `status`) VALUES (NULL, '1210 Demos', 'Jack', 'Check demos', '2020-01-19', '2010-0420', 'LOW', '0')
+INSERT INTO `kanban` (`ID`, `title`, `owner`, `description`, `assigned`, `due`, `priority`, `status`) VALUES (NULL, '4417 Labs', 'Jack', 'Check labs', '2020-01-19', '2010-0420', 'HI', '0')
+INSERT INTO `kanban` (`ID`, `title`, `owner`, `description`, `assigned`, `due`, `priority`, `status`) VALUES (NULL, '1720 PHP', 'Jack', 'More PHP mats', '2020-01-19', '2010-0420', 'LOW', '0')
+INSERT INTO `kanban` (`ID`, `title`, `owner`, `description`, `assigned`, `due`, `priority`, `status`) VALUES (NULL, '1720 Grid CSS', 'Jack', 'Work up lecture mats and lab', '2020-01-19', '2010-0420', 'LOW', '0')
