@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Jack Ramsey">
+    <meta name="date" content="12/30/2019">
+    <meta name="description" content="kanban board">
+    <meta name="keywords" content="csci 1720, kanban">
+    
+    <!-- Page Refresh -->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+
+    <!--
+        Author:         Jack Ramsey
+        Class:          CSCI 1720
+        Created:        12/26/2019
+        Last Upate:     01/05/2020  
+        Description:    Structure for kanban board       
+    -->
+
+    <!-- Bootstrap CSS - not really using BS here. Just leaving it in place for possible future use -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    
+    <!-- Author's CSS -->
+    <link rel="stylesheet" href="css/kanban.css">
+    <link rel='icon' href='../images/code_black.png'>
+    
+</head>
+
+<body>
+    <header>
+        <h1>Kanban</h1>
+    </header>
+    
+    <!-- modal, add new row -->
+    <div class='modal' id='modalAdd'>
+        <span id='close-modal' class='close-modal'><i class='fa fa-close'></i></span>
+        <div class='modal-outer' id='signin'>
+            <heading>Add a Job</heading>
+            <div class='modal-inner'>                
+                <label for='job'>Job:</label>
+                <input type='text' id='job' placeholder='Job' autofocus><br>
+                <label for='owner'>Owner:</label>
+                <input type='text' id='owner' placeholder='Owner'><br><br>
+                <label for='desc' style='margin-left: 20%; text-align: center; margin-bottom: 0;
+'>Description:</label><br>
+                <textarea id='desc' rows='5' cols='50' maxlength='220'></textarea>
+                <label for='assigned' class='dates'>Assigned: </label><input type='date' id='assigned'>
+                <label for='due' class='dates'>Due: </label><input type='date' id='due'>
+                
+                <fieldset>
+                    <legend>Priority</legend>
+                        <input type='radio' name='priority' value='low' id='radio1' checked>
+                        <label for='radio1'>Low</label>
+                        <input type='radio' name='priority' value='med' id='radio2'>
+                        <label for='radio2'>Medium</label>
+                        <input type='radio' name='priority' value='high' id='radio3'>
+                        <label for='radio3'>High</label>
+                </fieldset>
+                
+                <button class='submit' id='submitNew'>Submit</button>
+            </div>
+        </div>
+    </div>
+    
+        <!-- modal, edit card -->
+    <div class='modal' id='modalEdit'>
+        <span id='close-modal' class='close-modal'><i class='fa fa-close'></i></span>
+        <div class='modal-outer' id='signin'>
+            <heading>Edit Card</heading>
+            <div class='modal-inner'>                
+                <label for='jobEdit'>Job:</label>
+                <input type='text' id='jobEdit' placeholder='Job' autofocus><br>
+                <label for='ownerEdit'>Owner:</label>
+                <input type='text' id='ownerEdit' placeholder='Owner'><br><br>
+                <label for='descEdit' style='margin-left: 20%; text-align: center; margin-bottom: 0;
+'>Description:</label><br>
+                <textarea id='descEdit' rows='5' cols='50' maxlength='220'></textarea>
+                <label for='assignedEdit' class='dates'>Assigned: </label><input type='date' id='assignedEdit'>
+                <label for='dueEdit' class='dates'>Due: </label><input type='date' id='dueEdit'>
+                
+                <fieldset>
+                    <legend>Priority</legend>
+                        <input type='radio' name='priority' value='low' id='radio1Edit' checked>
+                        <label for='radio1Edit'>Low</label>
+                        <input type='radio' name='priority' value='med' id='radio2Edit'>
+                        <label for='radio2Edit'>Medium</label>
+                        <input type='radio' name='priority' value='high' id='radio3Edit'>
+                        <label for='radio3Edit'>High</label>
+                </fieldset>
+                
+                <button class='submit' id='submitEdit'>Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="saveMsg">Kanban-san Saved</div>
+    
+    <!-- add job button -->
+    <div class='addJob'>
+        <button id='add' class='add'>Add a Job</button> &nbsp;&nbsp;
+        <button class='add' id='save'>Save</button>
+    </div>
+    
+    <!-- kanban table -->
+    <table id='tab' class='tab'>
+        <tr><th>ToDo</th><th>In Process</th><th>Done</th></tr>
+
+        <!-- new jobs will be appended here -->
+        
+    </table>
+    
+    
+    
+    <br><br><br><br><br><br>
+    <footer>
+        <p>Copyright &copy; 2019</p>
+    </footer>
+    
+<!--
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                
+            
+            </div>
+
+    </div>
+-->
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+    <script src='js/kanban.js'></script>
+    
+</body>
+</html>
